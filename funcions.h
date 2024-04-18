@@ -7,7 +7,7 @@
 #include "./TAD/vectordinamico.h"
 
 
-void leerArquivo(vectorD *valores_monedas);
+void leerArquivo(vectorD *valores_monedas, char *arquivo_leer);
 
 void devolverCambioIlimitado();
 

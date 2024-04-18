@@ -6,7 +6,7 @@
 #define MAX_LINE_LENGTH 1000
 #define MAX_TOKENS 20
 
-void leerArquivo(vectorD *valores_monedas) {
+void leerArquivo(vectorD *valores_monedas, char *arquivo_leer) {
     FILE *file;
     char line[MAX_LINE_LENGTH];
     int numbers[MAX_TOKENS];
@@ -15,7 +15,7 @@ void leerArquivo(vectorD *valores_monedas) {
     int count, i;
 
     // Abre el archivo para lectura
-    file = fopen("monedas.txt", "r");
+    file = fopen(arquivo_leer, "r");
     if (file == NULL) {
         perror("No se pudo abrir el archivo");
         exit(1);
@@ -48,10 +48,8 @@ void leerArquivo(vectorD *valores_monedas) {
                 
                 CreaVector(valores_monedas, count);
                 
-                // Imprime los números almacenados
-                printf("Números después de 'libra': ");
+                // Guarda los números almacenados
                 for (i = 0; i < count; i++) {
-                    //printf("%d ", numbers[i]);
                     AsignaVector(valores_monedas, i, numbers[i]);
                 }
                 printf("\n");

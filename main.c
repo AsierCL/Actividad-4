@@ -13,9 +13,12 @@ int main(int argc, char** argv){
     vectorD solucion, moedas, stock;
 
 
+    leerArquivo(&moedas, "monedas.txt");
+    imprimir(moedas);
+    leerArquivo(&stock, "stock.txt");
+    imprimir(stock);
 
-
-    system("clear");
+    //system("clear");
     printf("\n-----------------------------------------------\n");
     printf("                 MODO DE USO                     \n");
     printf("\na) Moedas ilimitadas     b) Moedas limitadas  \n");
