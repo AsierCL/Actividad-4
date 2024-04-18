@@ -9,6 +9,11 @@
 
 void leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda);
 
+int cambioSinStock(int x, vectorD valor, vectorD solucion, int n); 
+void imprimirSolucion(vectorD valor, vectorD solucion);
+
+
+
 void devolverCambioIlimitado();
 
 void devolverCambioLimitado();

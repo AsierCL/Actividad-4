@@ -62,7 +62,51 @@ void leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda
     }
 }
 
-int cambio(int x, int valor[], int solucion[], int n) {
+int cambioSinStock(int x, vectorD valor, vectorD *solucion, int n) {
+    // Inicializar solucion[]
+    CreaVector(solucion,n);
+    for (int i = 0; i < n; i++) 
+        //solucion[i] = 0;
+        AsignaVector(solucion, i, 0);
+    
+    int i = 0, suma = 0;
+
+    // Mientras la suma no supere x y hayan denominaciones disponibles
+    while (suma < x && i < n) {
+        // Si se puede añadir la denominación actual sin pasarse de x
+        if (suma + recuperar(valor, i) <= x) {
+            AsignaVector(solucion, i, recuperar(*solucion, i)+1);
+            suma += recuperar(valor, i);
+        } else {
+            // Pasar a la siguiente denominación
+            i++;
+        }
+    }
+
+    // Si se logró el cambio exacto
+    if (suma == x) {
+        return 1;
+    } else {
+        // Reinicializar solucion[] y retornar 0
+        for (int i = 0; i < n; i++) 
+            AsignaVector(solucion, i, 0);
+        return 0;
+    }
+}
+
+void imprimirSolucion(vectorD valor, vectorD solucion){
+    int n = tamano(valor);
+    printf("\nDevolver:");
+    for(int i=0;i<n;i++){
+        printf("\n%d Moneda de %d",recuperar(solucion,i),recuperar(valor,i));
+    }
+    fflush(stdout);
+}
+
+
+
+
+/* int cambio(int x, int valor[], int solucion[], int n) {
     // Inicializar solucion[]
     for (int i = 0; i < n; i++) 
         solucion[i] = 0;
@@ -90,8 +134,7 @@ int cambio(int x, int valor[], int solucion[], int n) {
             solucion[i] = 0;
         return 0;
     }
-}
-
+} */
 
 void devolverCambioIlimitado();
 

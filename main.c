@@ -11,6 +11,7 @@ int main(int argc, char** argv){
     char limite_moedas, opcion;
     char tipo_moneda[32];
     vectorD solucion, moedas, stock;
+    int cambio_a_devolver;
 
 
     // IDEA
@@ -50,7 +51,10 @@ int main(int argc, char** argv){
                     printf("-----------------");
                     printf("\n| a) Dar cambio |\n");
                     printf("-----------------\n");
-                    ///devolverCambioIlimitado();
+                    printf("Canto cambio tes que dar? ");
+                    scanf("%d", &cambio_a_devolver);
+                    cambioSinStock(cambio_a_devolver, moedas, &solucion, longitudVector(moedas));
+                    imprimirSolucion(moedas, solucion);
                     sleep(2);
                     system("clear");
                 break;
