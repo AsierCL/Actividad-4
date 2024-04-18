@@ -2,68 +2,103 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
+#include "./TAD/vectordinamico.h"
 
 
 int main(int argc, char** argv){
     /// Global variables
-    char limited_money, opcion;
+    char dinero_limitado, opcion;
+    vectorD solucion, monedas, stock;
 
 
 
     system("clear");
     printf("\n-----------------------------------------------\n");
     printf("                 MODO DE USO                     \n");
-    printf("\na) Moedas ilimitadas     b) Moedas limitadas\n");
+    printf("\na) Moedas ilimitadas     b) Moedas limitadas  \n");
     printf("-----------------------------------------------\n");
-    printf("\nOpción: ");
-    scanf(" %c", &limited_money);
-    switch (limited_money)
-    {
-    case 'a':
-    
-    break;
-    
-    case 'b':
-        do{
-            system("clear");
-            printf("\n---------------------------------------\n");
-            printf("           MOEDAS LIMITADAS\n");
-            printf("\na) Dar cambio     b) Aumentar stock\n");
-            printf("---------------------------------------\n");
-            printf("\nOpción: ");
-            scanf(" %c", &opcion);
-            
-            // Entramos no switch
-            switch (opcion) {
-                case 'a': 
+    printf("\nCambio: ");
+    scanf(" %c", &dinero_limitado);
+    switch (dinero_limitado){
+        case 'a':
+            do{
+                system("clear");
+                printf("\n----------------------------------\n");
+                printf("       MOEDAS ILIMITADAS            \n");
+                printf("\na) Devolver cambio\ns) Saír\n");
+                printf("----------------------------------\n");
+                printf("\nOpción: ");
+                scanf(" %c", &opcion);
+
+                switch (opcion){
+                case 'a':
                     system("clear");
                     printf("-----------------");
                     printf("\n| a) Dar cambio |\n");
                     printf("-----------------\n");
-                    ///devolverCambio();
+                    ///devolverCambioIlimitado();
                     sleep(2);
                     system("clear");
                 break;
                 
-                case 'b':
-
+                case 's':
+                    printf("\nSaíndo do programa...\n");
                 break;
 
                 default:
                     printf("\x1b[31m\nOpción incorrecta\x1b[0m\n");
                     sleep(2);
                 break;
-            }
-            while (getchar() != '\n');
-        } while (opcion != 's');
-    break;
+                }
+            }while (opcion != 's');
+        break;
+        
+        case 'b':
+            do{
+                system("clear");
+                printf("\n---------------------------------------\n");
+                printf("           MOEDAS LIMITADAS\n");
+                printf("\na) Dar cambio\nb) Aumentar stock\ns) Sair\n");
+                printf("---------------------------------------\n");
+                printf("\nOpción: ");
+                scanf(" %c", &opcion);
+                
+                // Entramos no switch
+                switch (opcion) {
+                    case 'a': 
+                        system("clear");
+                        printf("-----------------");
+                        printf("\n| a) Dar cambio |\n");
+                        printf("-----------------\n");
+                        ///devolverCambioLimitado();
+                        sleep(2);
+                        system("clear");
+                    break;
+                        
+                    case 'b':
+
+                    break;
+
+                    case 's':
+                        printf("\nSaíndo do programa...\n");
+                    break;
+
+                    default:
+                        printf("\x1b[31m\nOpción incorrecta\x1b[0m\n");
+                        sleep(2);
+                    break;
+                }
+                while (getchar() != '\n');
+            } while (opcion != 's');
+        break;
     
-    default:
-        printf("\x1b[31m\nOpción incorrecta\x1b[0m\n");
-        sleep(2);
-    break;
+        case 's':
+            printf("\nSaíndo do programa...\n");
+        break;
+
+        default:
+            printf("\x1b[31m\nOpción incorrecta\x1b[0m\n");
+            sleep(2);
+        break;
     }
-
-
 }
