@@ -6,12 +6,12 @@
 #define MAX_LINE_LENGTH 1000
 #define MAX_TOKENS 20
 
-void leerArquivo(vectorD *valores_monedas, char *arquivo_leer) {
+void leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda) {
     FILE *file;
+    int check = 0;
     char line[MAX_LINE_LENGTH];
     int numbers[MAX_TOKENS];
     char *token;
-    char tipo_moneda[16];
     int count, i;
 
     // Abre el archivo para lectura
@@ -21,11 +21,6 @@ void leerArquivo(vectorD *valores_monedas, char *arquivo_leer) {
         exit(1);
     }
 
-    system("clear");
-    printf("\n-----------------------------------------------------------\n");
-    printf("Introduce a moeda coa que queres traballar (en minúsculas):\n");
-    printf("-----------------------------------------------------------\n");
-    scanf("%s",&tipo_moneda);
 
     // Lee el archivo línea por línea
     while (fgets(line, MAX_LINE_LENGTH, file)) {
@@ -47,7 +42,7 @@ void leerArquivo(vectorD *valores_monedas, char *arquivo_leer) {
                 }
                 
                 CreaVector(valores_monedas, count);
-                
+                check = 1;
                 // Guarda los números almacenados
                 for (i = 0; i < count; i++) {
                     AsignaVector(valores_monedas, i, numbers[i]);
@@ -56,9 +51,15 @@ void leerArquivo(vectorD *valores_monedas, char *arquivo_leer) {
             }
         }
     }
+    
 
     // Cierra el archivo
     fclose(file);
+
+    if (check == 0){
+        printf("\x1b[31m\nNon se atopou a moeda\x1b[0m\n");
+        exit(1);
+    }
 }
 
 int cambio(int x, int valor[], int solucion[], int n) {

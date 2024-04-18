@@ -9,16 +9,24 @@
 int main(int argc, char** argv){
     /// Global variables
     char limite_moedas, opcion;
-    char tipo_moeda[32];
+    char tipo_moneda[32];
     vectorD solucion, moedas, stock;
 
 
-    leerArquivo(&moedas, "monedas.txt");
-    imprimir(moedas);
-    leerArquivo(&stock, "stock.txt");
-    imprimir(stock);
+    // IDEA
+    /* Volver a funcion int leerArquivo, e facer un while coa condicion de que se devolve 1, 
+    que repita a pregunta para facer que volva a introducir a moeda*/
+    system("clear");
+    printf("\n-----------------------------------------------------------\n");
+    printf("Introduce a moeda coa que queres traballar (en minúsculas):\n");
+    printf("-----------------------------------------------------------\n");
+    scanf("%s",&tipo_moneda);
 
-    //system("clear");
+    leerArquivo(&moedas, "monedas.txt", tipo_moneda);
+    // CHECK imprimir(moedas);
+
+
+    system("clear");
     printf("\n-----------------------------------------------\n");
     printf("                 MODO DE USO                     \n");
     printf("\na) Moedas ilimitadas     b) Moedas limitadas  \n");
@@ -61,6 +69,8 @@ int main(int argc, char** argv){
         
         case 'b':
             do{
+                leerArquivo(&stock, "stock.txt", tipo_moneda);
+                // CHECK imprimir(stock);
                 system("clear");
                 printf("\n---------------------------------------\n");
                 printf("           MOEDAS LIMITADAS\n");
