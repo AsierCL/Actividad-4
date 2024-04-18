@@ -1,3 +1,0 @@
-void devolverCambioIlimitado();
-
-void devolverCambioLimitado();

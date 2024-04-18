@@ -3,12 +3,15 @@
 #include <unistd.h>
 
 #include "./TAD/vectordinamico.h"
+#include "./funcions.h"
 
 
 int main(int argc, char** argv){
     /// Global variables
-    char dinero_limitado, opcion;
-    vectorD solucion, monedas, stock;
+    char limite_moedas, opcion;
+    char tipo_moeda[32];
+    vectorD solucion, moedas, stock;
+
 
 
 
@@ -18,8 +21,8 @@ int main(int argc, char** argv){
     printf("\na) Moedas ilimitadas     b) Moedas limitadas  \n");
     printf("-----------------------------------------------\n");
     printf("\nCambio: ");
-    scanf(" %c", &dinero_limitado);
-    switch (dinero_limitado){
+    scanf(" %c", &limite_moedas);
+    switch (limite_moedas){
         case 'a':
             do{
                 system("clear");
