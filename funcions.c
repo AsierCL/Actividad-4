@@ -135,7 +135,11 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock, int 
     }
 }
 
-
+void aumentarStock(vectorD *stock, int n){
+    for (int i = 0; i<n; i++){
+        AsignaVector(stock, i, recuperar(*stock, i)+10);
+    }
+}
 
 void imprimirMonedas(vectorD valor, vectorD solucion){
     int n = tamano(valor);
