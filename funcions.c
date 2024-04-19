@@ -94,31 +94,23 @@ int cambioSinStock(int x, vectorD valor, vectorD *solucion, int n) {
     }
 }
 
-void imprimirSolucion(vectorD valor, vectorD solucion){
-    int n = tamano(valor);
-    printf("\nDevolver:");
-    for(int i=0;i<n;i++){
-        printf("\n%d Moneda de %d",recuperar(solucion,i),recuperar(valor,i));
-    }
-    fflush(stdout);
-}
 
 
-
-
-/* int cambio(int x, int valor[], int solucion[], int n) {
+int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock, int n) {
     // Inicializar solucion[]
+    CreaVector(solucion,n);
     for (int i = 0; i < n; i++) 
-        solucion[i] = 0;
+        //solucion[i] = 0;
+        AsignaVector(solucion, i, 0);
     
     int i = 0, suma = 0;
 
     // Mientras la suma no supere x y hayan denominaciones disponibles
     while (suma < x && i < n) {
         // Si se puede añadir la denominación actual sin pasarse de x
-        if (suma + valor[i] <= x) {
-            solucion[i]++;
-            suma += valor[i];
+        if (suma + recuperar(valor, i) <= x) {
+            AsignaVector(solucion, i, recuperar(*solucion, i)+1);
+            suma += recuperar(valor, i);
         } else {
             // Pasar a la siguiente denominación
             i++;
@@ -131,12 +123,18 @@ void imprimirSolucion(vectorD valor, vectorD solucion){
     } else {
         // Reinicializar solucion[] y retornar 0
         for (int i = 0; i < n; i++) 
-            solucion[i] = 0;
+            AsignaVector(solucion, i, 0);
         return 0;
     }
-} */
+}
 
-void devolverCambioIlimitado();
 
-void devolverCambioLimitado();
+
+void imprimirMonedas(vectorD valor, vectorD solucion){
+    int n = tamano(valor);
+    for(int i=0;i<n;i++){
+        printf("\n%d Moneda de %d",recuperar(solucion,i),recuperar(valor,i));
+    }
+    fflush(stdout);
+}
 

@@ -14,9 +14,13 @@ int main(int argc, char** argv){
     int cambio_a_devolver;
 
 
-    // IDEA
+    // IDEA1
     /* Volver a funcion int leerArquivo, e facer un while coa condicion de que se devolve 1, 
     que repita a pregunta para facer que volva a introducir a moeda*/
+    // IDEA2
+    /* Que se de unha lista cas moedas dispoñibles no arquivo,
+    para que o usuario sepa cal escoller */
+
     system("clear");
     printf("\n-----------------------------------------------------------\n");
     printf("Introduce a moeda coa que queres traballar (en minúsculas):\n");
@@ -54,8 +58,8 @@ int main(int argc, char** argv){
                     printf("Canto cambio tes que dar? ");
                     scanf("%d", &cambio_a_devolver);
                     cambioSinStock(cambio_a_devolver, moedas, &solucion, longitudVector(moedas));
-                    imprimirSolucion(moedas, solucion);
-                    sleep(2);
+                    imprimirMonedas(moedas, solucion);
+                    sleep(5);
                     system("clear");
                 break;
                 
@@ -74,7 +78,9 @@ int main(int argc, char** argv){
         case 'b':
             do{
                 leerArquivo(&stock, "stock.txt", tipo_moneda);
-                // CHECK imprimir(stock);
+                // CHECK 
+                imprimir(stock);
+                fflush(stdout);
                 system("clear");
                 printf("\n---------------------------------------\n");
                 printf("           MOEDAS LIMITADAS\n");
@@ -90,13 +96,18 @@ int main(int argc, char** argv){
                         printf("-----------------");
                         printf("\n| a) Dar cambio |\n");
                         printf("-----------------\n");
-                        ///devolverCambioLimitado();
+                        cambioConStock(cambio_a_devolver, moedas, &solucion, &stock, longitudVector(moedas));
                         sleep(2);
                         system("clear");
                     break;
-                        
-                    case 'b':
 
+                    case 'b':
+                        system("clear");
+                        printf("-----------------");
+                        printf("\nStock aumentado\n");
+                        printf("-----------------\n");
+                        printf("Novo stock:");
+                        imprimirMonedas(moedas, stock);
                     break;
 
                     case 's':
