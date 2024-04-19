@@ -76,8 +76,8 @@ int main(int argc, char** argv){
         break;
         
         case 'b':
+            leerArquivo(&stock, "stock.txt", tipo_moneda);
             do{
-                leerArquivo(&stock, "stock.txt", tipo_moneda);
                 // CHECK 
                 imprimir(stock);
                 fflush(stdout);
@@ -96,7 +96,13 @@ int main(int argc, char** argv){
                         printf("-----------------");
                         printf("\n| a) Dar cambio |\n");
                         printf("-----------------\n");
-                        cambioConStock(cambio_a_devolver, moedas, &solucion, &stock, longitudVector(moedas));
+                        printf("Canto cambio tes que dar? ");
+                        scanf("%d", &cambio_a_devolver);
+                        
+                        if (cambioConStock(cambio_a_devolver, moedas, &solucion, &stock, longitudVector(moedas))){
+                            imprimirMonedas(moedas, solucion);
+                        }
+
                         sleep(2);
                         system("clear");
                     break;

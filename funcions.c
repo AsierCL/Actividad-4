@@ -109,7 +109,12 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock, int 
     while (suma < x && i < n) {
         // Si se puede añadir la denominación actual sin pasarse de x
         if (suma + recuperar(valor, i) <= x) {
+            if(recuperar(*stock, i) == 0){
+                printf("\x1b[31m\nNon hai suficiente stock dispoñible\x1b[0m\n");
+                return 0;
+            }
             AsignaVector(solucion, i, recuperar(*solucion, i)+1);
+            AsignaVector(stock, i, recuperar(*stock, i)-1);
             suma += recuperar(valor, i);
         } else {
             // Pasar a la siguiente denominación
@@ -122,8 +127,10 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock, int 
         return 1;
     } else {
         // Reinicializar solucion[] y retornar 0
-        for (int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++) {
             AsignaVector(solucion, i, 0);
+        }
+        printf("\x1b[31m\nNon se obtivo o cambio exacto\x1b[0m\n");
         return 0;
     }
 }
