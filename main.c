@@ -57,7 +57,7 @@ int main(int argc, char** argv){
                     printf("-----------------\n");
                     printf("Canto cambio tes que dar? ");
                     scanf("%d", &cambio_a_devolver);
-                    if (cambioSinStock(cambio_a_devolver, moedas, &solucion, longitudVector(moedas))){
+                    if (cambioSinStock(cambio_a_devolver, moedas, &solucion)){
                         imprimirMonedas(moedas, solucion);
                     }
                     sleep(5);
@@ -100,7 +100,7 @@ int main(int argc, char** argv){
                         printf("Canto cambio tes que dar? ");
                         scanf("%d", &cambio_a_devolver);
                         
-                        if (cambioConStock(cambio_a_devolver, moedas, &solucion, &stock, longitudVector(moedas))){
+                        if (cambioConStock(cambio_a_devolver, moedas, &solucion, &stock)){
                             imprimirMonedas(moedas, solucion);
                         }
 

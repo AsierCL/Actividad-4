@@ -62,7 +62,10 @@ void leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda
     }
 }
 
-int cambioSinStock(int x, vectorD valor, vectorD *solucion, int n) {
+//// Modificar parametros entrada, evitar pasar n como argumento
+
+int cambioSinStock(int x, vectorD valor, vectorD *solucion) {
+    int n = longitudVector(valor);
     // Inicializar solucion[]
     CreaVector(solucion,n);
     for (int i = 0; i < n; i++) 
@@ -96,7 +99,8 @@ int cambioSinStock(int x, vectorD valor, vectorD *solucion, int n) {
 
 
 
-int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock, int n) {
+int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock) {
+    int n = longitudVector(valor);
     // Inicializar solucion[]
     CreaVector(solucion,n);
     for (int i = 0; i < n; i++) 
