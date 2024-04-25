@@ -14,4 +14,6 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock);
 void aumentarStock(vectorD *stock, int n);
 void imprimirMonedas(vectorD valor, vectorD solucion);
 
+void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda);
+
 #endif

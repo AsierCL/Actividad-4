@@ -79,9 +79,9 @@ int main(int argc, char** argv){
         case 'b':
             leerArquivo(&stock, "stock.txt", tipo_moneda);
             do{
-                // CHECK 
+                /* CHECK 
                 imprimir(stock);
-                fflush(stdout);
+                fflush(stdout); */
                 system("clear");
                 printf("\n---------------------------------------\n");
                 printf("           MOEDAS LIMITADAS\n");
@@ -90,7 +90,6 @@ int main(int argc, char** argv){
                 printf("\nOpción: ");
                 scanf(" %c", &opcion);
                 
-                // Entramos no switch
                 switch (opcion) {
                     case 'a': 
                         system("clear");
@@ -141,4 +140,5 @@ int main(int argc, char** argv){
             sleep(2);
         break;
     }
+    actualizar_stock(stock, "stock.txt", tipo_moneda);
 }

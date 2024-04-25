@@ -3,8 +3,8 @@
 #include <string.h>
 #include "./TAD/vectordinamico.h"
 
-#define MAX_LINE_LENGTH 1000
-#define MAX_TOKENS 20
+#define MAX_LINE_LENGTH 32
+#define MAX_TOKENS 32
 
 void leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda) {
     FILE *file;
@@ -153,3 +153,34 @@ void imprimirMonedas(vectorD valor, vectorD solucion){
     fflush(stdout);
 }
 
+void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda){
+    FILE *file;
+    int check = 0;
+    char line[MAX_LINE_LENGTH];
+    int numbers[MAX_TOKENS];
+    char *token;
+    int count, i;
+
+    // Abre el archivo para lectura
+    file = fopen(arquivo_actualizar, "r+");
+    if (file == NULL) {
+        perror("No se pudo abrir el archivo");
+        exit(1);
+    }
+
+        // Lee el archivo línea por línea
+    while (fgets(line, MAX_LINE_LENGTH, file)) {
+        // Verifica si la línea comienza con "libra"
+        if (strstr(line, tipo_moneda) != NULL) {
+            fprintf(file, "%s", tipo_moneda);
+            for (i = 0; i < longitudVector(stock); i++) {
+                fprintf(file, "%d ", Componentei(stock,i));
+            }
+            fprintf(file, "\n"); // Agrega un salto de línea al final
+        }
+    }
+    
+
+    // Cierra el archivo
+    fclose(file);
+}
