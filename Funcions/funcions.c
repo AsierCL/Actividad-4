@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "./TAD/vectordinamico.h"
+#include "../TAD/vectordinamico.h"
 
 #define MAX_LINE_LENGTH 32
 #define MAX_TOKENS 32
@@ -15,10 +15,9 @@ void imprimirMonedasDispoñibles(char *arquivo_leer){
     // Abre el archivo para lectura
     file = fopen(arquivo_leer, "r");
     if (file == NULL) {
-        perror("No se pudo abrir el archivo");
+        perror("Non se poido abrir o arquivo");
         exit(1);
     }
-
 
     // Lee el archivo línea por línea
     while (fgets(line, MAX_LINE_LENGTH, file)) {
@@ -45,7 +44,7 @@ int leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda)
     // Abre el archivo para lectura
     file = fopen(arquivo_leer, "r");
     if (file == NULL) {
-        perror("\x1b[31m\nNo se pudo abrir el archivo\x1b[0m\n");
+        perror("\x1b[31m\nNon se poido abrir o arquivo\x1b[0m\n");
         exit(1);
     }
 
@@ -180,38 +179,8 @@ void imprimirMonedas(vectorD valor, vectorD solucion){
     fflush(stdout);
 }
 
-/* void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda){
-    FILE *file;
-    int check = 0;
-    char line[MAX_LINE_LENGTH];
-    int numbers[MAX_TOKENS];
-    char *token;
-    long posicion = 0;
-
-    file = fopen(arquivo_actualizar, "r+");
-    while(fgets(line,MAX_LINE_LENGTH,file)!=NULL){
-        if(strstr(line, tipo_moneda)!=NULL){
-            fseek(file, posicion,SEEK_SET);
-            fprintf(file, "%s", tipo_moneda);
-
-            for(int i=0;i<longitudVector(stock);i++){
-                fprintf(file, " %d", Componentei(stock,i));
-            }
-            fprintf(file, "\n");
-
-            // Cierra el archivo
-            fclose(file);
-
-            return;
-        }
-        posicion = ftell(file);
-    }
-
-    printf("\nError al imprimir\n");
-    fclose(file);
-} */
-
 void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda){
+    //Variables
     FILE *file;
     FILE *file_2;
     int check = 0;
@@ -220,8 +189,11 @@ void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda
     char *token;
     long posicion = 0;
 
+    //Abro os dous arquivos
     file = fopen(arquivo_actualizar, "r");
     file_2 = fopen("temp.txt", "w");
+
+
     while(fgets(line,MAX_LINE_LENGTH,file)!=NULL){
         if(strstr(line, tipo_moneda)!=NULL){
 
@@ -235,10 +207,10 @@ void actualizar_stock(vectorD stock, char *arquivo_actualizar, char *tipo_moneda
             fprintf(file_2, line);
         }
     }
-    // Elimina el archivo original
-    remove(arquivo_actualizar);
 
-    // Renombra el archivo temporal como el archivo original
+
+    //Reemplazo o archivo
+    remove(arquivo_actualizar);
     rename("temp.txt", arquivo_actualizar);
 
     fclose(file);
