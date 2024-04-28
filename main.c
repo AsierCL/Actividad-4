@@ -21,13 +21,16 @@ int main(int argc, char** argv){
     /* Que se de unha lista cas moedas dispoñibles no arquivo,
     para que o usuario sepa cal escoller */
 
+    do{
     system("clear");
     printf("\n-----------------------------------------------------------\n");
-    printf("Introduce a moeda coa que queres traballar (en minúsculas):\n");
+    printf("Escribe a moeda coa que queres traballar\n");
+    printf("Opcións dispoñibles: ");
+    imprimirMonedasDispoñibles("monedas.txt");
     printf("-----------------------------------------------------------\n");
     scanf("%s",&tipo_moneda);
+    }while(leerArquivo(&moedas, "monedas.txt", tipo_moneda));
 
-    leerArquivo(&moedas, "monedas.txt", tipo_moneda);
     // CHECK imprimir(moedas);
 
 
@@ -115,7 +118,7 @@ int main(int argc, char** argv){
                         printf("-----------------\n");
                         printf("Novo stock:");
                         imprimirMonedas(moedas, stock);
-                        sleep(4);
+                        sleep(2);
                     break;
 
                     case 's':
