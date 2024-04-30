@@ -12,7 +12,7 @@ void imprimirMonedasDispoñibles(char *arquivo_leer){
     char line[MAX_LINE_LENGTH];
     char *token;
 
-    // Abre el archivo para lectura
+    // Abre o archivo para lectura
     file = fopen(arquivo_leer, "r");
     if (file == NULL) {
         perror("Non se poido abrir o arquivo");
@@ -29,7 +29,7 @@ void imprimirMonedasDispoñibles(char *arquivo_leer){
     }
     printf("\n");
 
-    // Cierra el archivo
+    // Cerra o arquivo
     fclose(file);
 }
 
@@ -41,7 +41,7 @@ int leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda)
     char *token;
     int count, i;
 
-    // Abre el archivo para lectura
+    // Abre o arquivo para lectura
     file = fopen(arquivo_leer, "r");
     if (file == NULL) {
         perror("\x1b[31m\nNon se poido abrir o arquivo\x1b[0m\n");
@@ -80,7 +80,7 @@ int leerArquivo(vectorD *valores_monedas, char *arquivo_leer, char *tipo_moneda)
     }
     
 
-    // Cierra el archivo
+    // Cerra o archivo
     fclose(file);
 
     if (check == 1){
@@ -102,23 +102,23 @@ int cambioSinStock(int x, vectorD valor, vectorD *solucion) {
     
     int i = 0, suma = 0;
 
-    // Mientras la suma no supere x y hayan denominaciones disponibles
+    // Mentras a suma non supere x e haxa valores disponibles
     while (suma < x && i < n) {
-        // Si se puede añadir la denominación actual sin pasarse de x
+        // Si se pode añadir o valor actual sin pasarse de x
         if (suma + recuperar(valor, i) <= x) {
             AsignaVector(solucion, i, recuperar(*solucion, i)+1);
             suma += recuperar(valor, i);
         } else {
-            // Pasar a la siguiente denominación
+            // Pasar ao seguinte valor
             i++;
         }
     }
 
-    // Si se logró el cambio exacto
+    // Se ten o cambio exacto
     if (suma == x) {
         return 1;
     } else {
-        // Reinicializar solucion[] y retornar 0
+        // Reiniciaar solucion[] e devolver 0
         for (int i = 0; i < n; i++) 
             AsignaVector(solucion, i, 0);
         return 0;
@@ -135,9 +135,9 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock) {
     
     int i = 0, suma = 0;
 
-    // Mientras la suma no supere x y hayan denominaciones disponibles
+    // Mentras a suma non supere x e haxa valores disponibles
     while (suma < x && i < n) {
-        // Si se puede añadir la denominación actual sin pasarse de x
+        // Si se pode añadir o valor actual sin pasarse de x
         if (suma + recuperar(valor, i) <= x) {
             if(recuperar(*stock, i) == 0){
                 printf("\x1b[31m\nNon hai suficiente stock dispoñible\x1b[0m\n");
@@ -147,16 +147,16 @@ int cambioConStock(int x, vectorD valor, vectorD *solucion, vectorD *stock) {
             AsignaVector(stock, i, recuperar(*stock, i)-1);
             suma += recuperar(valor, i);
         } else {
-            // Pasar a la siguiente denominación
+            // Pasar aoseguinte valor
             i++;
         }
     }
 
-    // Si se logró el cambio exacto
+    // Se consigueu o cambio
     if (suma == x) {
         return 1;
     } else {
-        // Reinicializar solucion[] y retornar 0
+        // Reiniciar solucion[] e devolver 0
         for (int i = 0; i < n; i++) {
             AsignaVector(solucion, i, 0);
         }
