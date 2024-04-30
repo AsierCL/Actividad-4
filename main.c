@@ -18,7 +18,7 @@ int main(int argc, char** argv){
     char archivo_stock[32];
 
     //Posibilidad de pasar os arquivos como args de entrada
-    if(argc = 3){
+    if(argc == 3){
         strcpy(archivo_monedas, argv[1]);
         strcpy(archivo_stock, argv[2]);
     }
